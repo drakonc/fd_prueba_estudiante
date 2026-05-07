@@ -20,21 +20,15 @@ export class InscripcionService {
     );
   }
 
-  registrarInscripcion(
-    estudianteId: number,
-    body: RegistrarInscripcionRequest
-  ): Observable<ApiResponse<boolean>> {
-    return this.http.post<ApiResponse<boolean>>(
-      `${this.base}/${estudianteId}/inscripcion`, body
-    );
+  registrarInscripcion( estudianteId: number, body: RegistrarInscripcionRequest): Observable<ApiResponse<boolean>> {
+    return this.http.post<ApiResponse<boolean>>(`${this.base}/${estudianteId}/inscripcion`, body);
   }
 
-  getCompanerosPorMateria(
-    estudianteId: number,
-    materiaId: number
-  ): Observable<ApiResponse<CompaneroMateria[]>> {
-    return this.http.get<ApiResponse<CompaneroMateria[]>>(
-      `${this.base}/${estudianteId}/materias/${materiaId}/companeros`
-    );
+  getCompanerosPorMateria(estudianteId: number, materiaId: number): Observable<ApiResponse<CompaneroMateria[]>> {
+    return this.http.get<ApiResponse<CompaneroMateria[]>>(`${this.base}/${estudianteId}/materias/${materiaId}/companeros`);
+  }
+
+  desinscribirMateria(estudianteId: number, materiaId: number): Observable<ApiResponse<boolean>> {
+    return this.http.delete<ApiResponse<boolean>>(`${this.base}/${estudianteId}/inscripcion/${materiaId}`);
   }
 }
