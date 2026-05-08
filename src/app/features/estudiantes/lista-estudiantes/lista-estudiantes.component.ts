@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, inject, signal, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { EstudianteService } from '../../../core/services/estudiante.service';
 import { AuthStore } from '../../../core/store/auth.store';
 import { Estudiante } from '../../../core/models/estudiante.model';
@@ -8,58 +7,15 @@ import { FormEstudianteComponent } from '../form-estudiante/form-estudiante.comp
 @Component({
   selector: 'app-lista-estudiantes',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormEstudianteComponent, RouterLink],
+  imports: [FormEstudianteComponent],
   template: `
-    <div class="max-w-7xl mx-auto px-6 py-8">
+    <div class="px-8 py-8">
       <div class="flex items-center justify-between mb-6">
-        <div class="flex items-center gap-4">
-          <a
-            routerLink="/inicio"
-            class="w-10 h-10 flex items-center justify-center rounded-xl bg-gray-100 hover:bg-blue-50 text-gray-500 hover:text-blue-600 transition-all duration-200"
-            aria-label="Volver al inicio"
-          >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-              />
-            </svg>
-          </a>
-          <div>
-            <h1
-              class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"
-            >
-              Estudiantes
-            </h1>
-            <p class="text-sm text-gray-500 mt-1">
-              {{ estudiantes().length }} registros encontrados
-            </p>
-          </div>
+        <div>
+          <p class="text-xs font-semibold text-blue-500 uppercase tracking-widest mb-1">Administración</p>
+          <h1 class="text-2xl font-bold text-gray-800">Estudiantes</h1>
+          <p class="text-sm text-gray-400 mt-0.5">{{ estudiantes().length }} registros encontrados</p>
         </div>
-        @if (esAdmin()) {
-          <button
-            (click)="abrirNuevo()"
-            class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 flex items-center gap-2 shadow-lg shadow-blue-500/25"
-          >
-            <svg
-              class="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 4v16m8-8H4"
-              />
-            </svg>
-            Nuevo
-          </button>
-        }
       </div>
 
       @if (cargando()) {
@@ -74,7 +30,7 @@ import { FormEstudianteComponent } from '../form-estudiante/form-estudiante.comp
         </div>
       } @else {
         <div
-          class="bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-100/50 shadow-xl shadow-gray-200/30 overflow-hidden"
+          class="bg-white rounded-2xl shadow-sm overflow-hidden"
         >
           <div class="overflow-x-auto">
             <table class="w-full text-sm" aria-label="Lista de estudiantes">

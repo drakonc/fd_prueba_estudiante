@@ -59,12 +59,5 @@ export const routes: Routes = [
       import('./features/programas-credito/lista-programas/lista-programas.component')
         .then(m => m.ListaProgramasComponent)
   },
-  {
-    path: 'usuarios',
-    canActivate: [adminGuard],
-    loadComponent: () =>
-      import('./features/usuarios/lista-usuarios/lista-usuarios.component')
-        .then(m => m.ListaUsuariosComponent)
-  },
   { path: '**', redirectTo: '/inicio' }
 ];

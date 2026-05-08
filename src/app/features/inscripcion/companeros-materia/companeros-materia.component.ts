@@ -16,41 +16,40 @@ interface GrupoCompaneros {
   selector: 'app-companeros-materia',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="mt-6">
-      <h2 class="text-lg font-medium text-gray-900 mb-4">Compañeros de clase</h2>
-
-      @if (cargando()) {
-        <div class="flex justify-center py-8" aria-busy="true" aria-label="Cargando compañeros">
-          <div class="w-6 h-6 border-2 border-emerald-600 border-t-transparent rounded-full animate-spin"></div>
-        </div>
-      } @else if (grupos().length === 0) {
-        <p class="text-gray-400 text-sm">No hay compañeros registrados aún.</p>
-      } @else {
-        <div class="space-y-4">
-          @for (grupo of grupos(); track grupo.materiaId) {
-            <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-4">
-              <h3 class="font-medium text-gray-800 mb-2 text-sm">{{ grupo.materiaNombre }}</h3>
-              @if (grupo.companeros.length === 0) {
-                <p class="text-gray-400 text-sm">Sin compañeros inscritos.</p>
-              } @else {
-                <ul class="space-y-1" [attr.aria-label]="'Compañeros de ' + grupo.materiaNombre">
-                  @for (nombre of grupo.companeros; track nombre) {
-                    <li class="text-sm text-gray-600 flex items-center gap-2">
-                      <span
-                        class="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center text-xs font-medium text-gray-500"
-                        aria-hidden="true">
-                        {{ nombre.charAt(0).toUpperCase() }}
-                      </span>
-                      {{ nombre }}
-                    </li>
-                  }
-                </ul>
-              }
-            </div>
-          }
-        </div>
-      }
-    </div>
+    @if (cargando()) {
+      <div class="flex justify-center py-8" aria-busy="true" aria-label="Cargando compañeros">
+        <div class="w-5 h-5 border-2 border-blue-400 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    } @else if (grupos().length === 0) {
+      <p class="text-gray-400 text-sm text-center py-6">No hay compañeros registrados aún.</p>
+    } @else {
+      <div class="space-y-4">
+        @for (grupo of grupos(); track grupo.materiaId) {
+          <div>
+            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
+              {{ grupo.materiaNombre }}
+            </p>
+            @if (grupo.companeros.length === 0) {
+              <p class="text-xs text-gray-400 pl-1">Sin compañeros inscritos aún.</p>
+            } @else {
+              <ul class="space-y-1.5" [attr.aria-label]="'Compañeros de ' + grupo.materiaNombre">
+                @for (nombre of grupo.companeros; track nombre) {
+                  <li class="flex items-center gap-2.5 py-1.5 px-2 rounded-xl hover:bg-gray-50 transition-colors">
+                    <span
+                      class="w-7 h-7 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0"
+                      aria-hidden="true">
+                      {{ nombre.charAt(0).toUpperCase() }}
+                    </span>
+                    <span class="text-sm text-gray-700 truncate">{{ nombre }}</span>
+                  </li>
+                }
+              </ul>
+            }
+          </div>
+          <hr class="border-gray-50 last:hidden" />
+        }
+      </div>
+    }
   `
 })
 export class CompanerosMateriaComponent implements OnInit {

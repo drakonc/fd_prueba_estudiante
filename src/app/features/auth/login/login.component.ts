@@ -11,25 +11,13 @@ import { LoginRequest } from '../../../core/models/auth.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, RouterLink],
   template: `
-    <div class="min-h-screen flex items-center justify-center px-4 relative overflow-hidden">
-      <div
-        class="absolute inset-0 bg-gradient-to-br from-blue-500 via-cyan-500 to-indigo-500 opacity-20"
-      ></div>
-      <div
-        class="absolute top-20 left-20 w-72 h-72 bg-blue-400 rounded-full blur-3xl opacity-30"
-      ></div>
-      <div
-        class="absolute bottom-20 right-20 w-96 h-96 bg-indigo-400 rounded-full blur-3xl opacity-30"
-      ></div>
-
-      <div
-        class="relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/50 p-8 w-full max-w-md"
-      >
-        <div class="text-center mb-6">
+    <div class="min-h-screen flex items-center justify-center px-4">
+      <div class="bg-white rounded-3xl shadow-sm p-8 w-full max-w-md">
+        <div class="text-center mb-8">
           <div
-            class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl mx-auto mb-4 flex items-center justify-center"
+            class="w-14 h-14 bg-blue-500 rounded-2xl mx-auto mb-5 flex items-center justify-center"
           >
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -38,12 +26,9 @@ import { LoginRequest } from '../../../core/models/auth.model';
               />
             </svg>
           </div>
-          <h1
-            class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"
-          >
-            Portal Estudiantes
-          </h1>
-          <p class="text-gray-500 text-sm mt-1">Inicie sesión para continuar</p>
+          <p class="text-xs font-semibold text-blue-500 uppercase tracking-widest mb-1">Portal Académico</p>
+          <h1 class="text-2xl font-bold text-gray-800">Iniciar sesión</h1>
+          <p class="text-gray-400 text-sm mt-1">Ingrese sus credenciales para continuar</p>
         </div>
 
         @if (error()) {
@@ -89,7 +74,7 @@ import { LoginRequest } from '../../../core/models/auth.model';
           <button
             type="submit"
             [disabled]="cargando()"
-            class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl py-3 text-sm font-semibold hover:from-blue-700 hover:to-indigo-700 disabled:opacity-50 transition-all duration-200 shadow-lg shadow-blue-500/25"
+            class="w-full bg-blue-500 hover:bg-blue-600 text-white rounded-xl py-3 text-sm font-semibold disabled:opacity-50 transition-colors duration-200"
           >
             @if (cargando()) {
               <span class="flex items-center justify-center gap-2">
